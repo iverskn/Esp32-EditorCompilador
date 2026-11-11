@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://esp32ide.com/schemas/compile-request.json",
+  "title": "CompileRequest",
+  "type": "object",
+  "properties": {
+    "fqbn": {
+      "type": "string",
+      "default": "esp32:esp32:esp32",
+      "description": "Fully Qualified Board Name para la placa objetivo de compilación"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { 
+            "type": "string", 
+            "pattern": "^[a-zA-Z0-9_-]+\\.(ino|cpp|h|c)$",
+            "example": "main.ino" 
+          },
+          "content": { 
+            "type": "string", 
+            "example": "#include <Arduino.h>\nvoid setup(){}" 
+          }
+        },
+        "required": ["name", "content"]
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["fqbn", "files"]
+}

@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e1e;
+  color: #cccccc;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.ide-header {
+  height: 45px;
+  background-color: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.brand {
+  font-weight: bold;
+  color: #007acc;
+  font-size: 16px;
+}
+
+.badge {
+  font-size: 10px;
+  background: #007acc;
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+.btn {
+  background: #0e639c;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn:hover {
+  background: #1177bb;
+}
+
+.ide-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 45px);
+}
+
+.tabs-bar {
+  display: flex;
+  background: #252526;
+  border-bottom: 1px solid #3c3c3c;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 8px 16px;
+  background: #2d2d2d;
+  color: #969696;
+  border-right: 1px solid #252526;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  user-select: none;
+}
+
+.tab.active {
+  background: #1e1e1e;
+  color: #ffffff;
+  border-top: 2px solid #007acc;
+}
+
+.tab-close {
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 2px 4px;
+}
+
+.tab-close:hover {
+  background: #4a4a4a;
+}
+
+#editor-container {
+  flex: 1;
+  width: 100%;
+}
+
+.console-panel {
+  height: 180px;
+  background: #1e1e1e;
+  border-top: 1px solid #3c3c3c;
+  display: flex;
+  flex-direction: column;
+}
+
+.console-header {
+  background: #252526;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #aaaaaa;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+#console-output {
+  flex: 1;
+  padding: 10px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 12px;
+  color: #d4d4d4;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

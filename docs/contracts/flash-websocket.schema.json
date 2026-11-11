@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://esp32ide.com/schemas/flash-websocket.json",
+  "title": "FlashWebSocketMessage",
+  "type": "object",
+  "properties": {
+    "type": { 
+      "type": "string", 
+      "enum": ["PROGRESS", "SUCCESS", "ERROR"] 
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "percentage": { "type": "number", "minimum": 0, "maximum": 100 },
+        "stage": { 
+          "type": "string", 
+          "enum": ["CONNECTING", "ERASING", "WRITING_FLASH", "VERIFYING", "FINISHED"] 
+        },
+        "details": { "type": "string" }
+      },
+      "required": ["percentage", "stage"]
+    }
+  },
+  "required": ["type", "payload"]
+}
