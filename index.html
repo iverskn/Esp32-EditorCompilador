@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IDE ESP32 - Equipo Morado</title>
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e1e; color: #d4d4d4; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    header { background: #252526; padding: 10px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #3c3c3c; }
+    .brand { font-weight: bold; color: #a855f7; font-size: 1.1rem; margin-right: 10px; }
+    button { background: #3c3c3c; color: #fff; border: 1px solid #555; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: 500; transition: 0.2s; }
+    button:hover { background: #505050; }
+    button.primary { background: #0e639c; border-color: #1177bb; }
+    button.primary:hover { background: #1177bb; }
+    button.success { background: #16825d; border-color: #1e9e72; }
+    button.success:hover { background: #1e9e72; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    select, input { background: #3c3c3c; color: #fff; border: 1px solid #555; padding: 6px 10px; border-radius: 4px; }
+    #editor-container { flex: 1; width: 100%; border-bottom: 1px solid #3c3c3c; }
+    #console-panel { height: 220px; background: #181818; display: flex; flex-direction: column; }
+    .console-header { background: #252526; padding: 6px 16px; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+    .progress-bar-bg { width: 200px; height: 10px; background: #333; border-radius: 5px; overflow: hidden; display: none; }
+    .progress-bar-fill { height: 100%; width: 0%; background: #a855f7; transition: width 0.2s; }
+    #console-output { flex: 1; padding: 10px 16px; font-family: Consolas, monospace; font-size: 0.85rem; overflow-y: auto; white-space: pre-wrap; }
+    .log-info { color: #9cdcfe; }
+    .log-success { color: #4ec9b0; font-weight: bold; }
+    .log-warning { color: #dcdcaa; }
+    .log-error { color: #f48771; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="brand"> IDE ESP32 - Equipo morado</span>
+    <button id="btn-verify" class="primary">✔ Verificar / Compilar</button>
+    <button id="btn-upload" class="success">➜ Cargar a Placa (Flash)</button>
+
+    <label for="sketch-name" style="font-size: 0.85rem; margin-left: 8px;">Sketch:</label>
+    <input id="sketch-name" type="text" value="PruebaBlink" style="width: 130px;" />
+
+    <label for="port-select" style="font-size: 0.85rem; margin-left: 8px;">Puerto USB:</label>
+    <select id="port-select">
+      <option value="">Buscando puertos...</option>
+    </select>
+    <button id="btn-refresh-ports" title="Actualizar puertos USB">↻</button>
+
+    <label for="board-select" style="font-size: 0.85rem; margin-left: 8px;">Placa:</label>
+    <select id="board-select">
+      <option value="esp32:esp32:esp32">ESP32 Dev Module (esp32:esp32:esp32)</option>
+      <option value="esp32:esp32:esp32s3">ESP32-S3 Dev Module</option>
+      <option value="esp32:esp32:esp32c3">ESP32-C3 Dev Module</option>
+    </select>
+  </header>
+
+  <div id="editor-container"></div>
+
+  <div id="console-panel">
+    <div class="console-header">
+      <span>Consola de Salida / Eventos de Compilador y Esptool</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="progress-bar-bg" id="progress-container">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <span id="progress-text" style="font-size: 0.8rem; color: #a855f7;"></span>
+        <button id="btn-clear-console" style="padding: 2px 8px; font-size: 0.75rem;">Limpiar Log</button>
+      </div>
+    </div>
+    <div id="console-output"></div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
